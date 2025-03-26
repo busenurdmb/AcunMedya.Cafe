@@ -10,3 +10,5 @@ namespace AcunMedya.Cafe.ViewComponents
         }
     }
 }
+
+//views-shared-component-_AdminLayoutHeadComponentPartial-Default
