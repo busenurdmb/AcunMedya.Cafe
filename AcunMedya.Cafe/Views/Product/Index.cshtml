@@ -6,10 +6,69 @@
 }
 
 
+<style>
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        border: none;
+    }
+
+    .table thead {
+        background-color: #f7f7f7;
+        color: #333;
+        font-weight: 600;
+        border-bottom: 2px solid #ddd;
+    }
+
+    .table td, .table th {
+        vertical-align: middle !important;
+    }
+
+    .btn-action {
+        border-radius: 10px;
+        padding: 6px 12px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .btn-update {
+        background-color: #e6f0ff;
+        color: #007bff;
+        border: 1px solid #cce0ff;
+    }
+
+        .btn-update:hover {
+            background-color: #d4e8ff;
+        }
+
+    .btn-delete {
+        background-color: #ffe6e6;
+        color: #dc3545;
+        border: 1px solid #f5b4b4;
+    }
+
+        .btn-delete:hover {
+            background-color: #ffdddd;
+        }
+
+    .img-rounded {
+        border-radius: 50%;
+        border: 2px solid #ddd;
+        height: 60px;
+        width: 60px;
+        object-fit: cover;
+    }
+</style>
 
 <div class="content-wrapper">
     <div class="page-header">
         <h3 class="page-title"> Ürün Tablsou </h3>
+        <a href="/Product/AddProduct" class="btn btn-gradient-success">
+            <i class="fa fa-plus-circle"></i> Yeni Ürün Ekle
+        </a>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Tablo</a></li>
@@ -17,6 +76,8 @@
             </ol>
         </nav>
     </div>
+
+
     <div class="row">
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
@@ -24,15 +85,16 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Ürün İsmi</th>
-                                <th>Fiyatı</th>
-                                <th>Açıklaması</th>
-                                <th>Resmi</th>
-                                <th>Kategorisi</th>
-                                <th>Güncelle</th>
-                                <th>Sil</th>
+                                <th>#️⃣</th>
+                                <th>📝 Ürün İsmi</th>
+                                <th>💸 Fiyatı</th>
+                                <th>🧾 Açıklaması</th>
+                                <th>🖼️ Resmi</th>
+                                <th>📂 Kategorisi</th>
+                                <th>✏️ Güncelle</th>
+                                <th>🗑️ Sil</th>
                             </tr>
+
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
@@ -45,8 +107,16 @@
                                     <td>@item.Description</td>
                                     <td><img src="@item.ImageUrl" style="height:75px;width:75px"/></td>
                                     <td>@item.Category.CategoryName</td>
-                                    <td><a href="/Product/UpdateProduct/@item.ProductId" class="badge badge-info">Güncelle</a></td>
-                                    <td><a onclick="deleteProduct(@item.ProductId)" class="badge badge-danger">Sil</a></td>
+                                    <td>
+                                        <a href="/Product/UpdateProduct/@item.ProductId" class="btn  btn-gradient-warning">
+                                            <i class="fa fa-edit"></i> Güncelle
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a onclick="deleteProduct(@item.ProductId)" class="btn  btn-gradient-danger">
+                                            <i class="fa fa-trash"></i> Sil
+                                        </a>
+                                    </td>
                                     @* <td><a href="/Product/DeleteProduct/@item.ProductId" class="badge badge-danger">Sil</a></td> *@
                                 </tr>
                             }
@@ -54,7 +124,7 @@
 
                         </tbody>
                     </table>
-                    <a href="/Product/AddProduct" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Yeni Ürün</a>
+                  
                 </div>
             </div>
         </div>
