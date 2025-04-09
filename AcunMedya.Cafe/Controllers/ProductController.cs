@@ -1,5 +1,6 @@
 ﻿using AcunMedya.Cafe.Context;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace AcunMedya.Cafe.Controllers
@@ -19,6 +20,21 @@ namespace AcunMedya.Cafe.Controllers
             //Eager Loading
             var values=_context.Products.Include(x=>x.Category).ToList();
             return View(values);
+        }
+
+        [HttpGet]
+        public IActionResult AddProduct()
+        {
+
+            List<SelectListItem> values = (from x in _context.Categories.ToList()
+                                           select new SelectListItem
+                                           {
+                                               Text = x.CategoryName,
+                                               Value = x.CategoryId.ToString()
+                                           }
+                                         ).ToList();
+            ViewBag.v = values;
+            return View();
         }
     }
 }
