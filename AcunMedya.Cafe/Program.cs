@@ -1,9 +1,16 @@
 using AcunMedya.Cafe.Context;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddFluentValidationAutoValidation(). //ModelState ýs valid fluentvalidation entegresi
+                AddFluentValidationClientsideAdapters(). // tarayýcý tarafýnda hata göstermek için
+                AddValidatorsFromAssembly(Assembly.GetExecutingAssembly()); //validator sýnýflarýný tanýmasý için 
 
 builder.Services.AddDbContext<CafeContext>();
 

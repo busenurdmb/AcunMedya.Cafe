@@ -28,6 +28,11 @@ namespace AcunMedya.Cafe.Controllers
         [HttpPost]
         public IActionResult AddCategory(Category p)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(p); //hatalar varsa aynı form sayfası döner :)
+            }
+
             _context.Categories.Add(p);
             _context.SaveChanges();
             return RedirectToAction("Index");
